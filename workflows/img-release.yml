@@ -1,0 +1,29 @@
+name: render
+
+permissions:
+  contents: write
+
+on:
+  push:
+
+
+jobs:
+  export_svg:
+    runs-on: ubuntu-latest
+    steps:         
+      - run: |
+          ls -l
+          sudo apt-get update
+          sudo apt-get -y install dvisvgm
+          sudo apt-get -y install ghostscript
+          mkdir svg
+          sudo dvisvgm --pdf --output=svg/implementations-shall.svg implementations-shall.pdf
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: svg
+          path: svg/*
+          overwrite: True
+
+  
