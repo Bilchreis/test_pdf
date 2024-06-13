@@ -9,20 +9,15 @@ on:
 jobs:
   export_svg:
     runs-on: ubuntu-latest
-    steps:         
+    steps:
+      - uses: actions/checkout@v4       
       - run: |
           ls -l
           sudo apt-get update
           sudo apt-get -y install dvisvgm
-          sudo apt-get -y install ghostscript
           mkdir svg
           sudo dvisvgm --pdf --output=svg/implementations-shall.svg implementations-shall.pdf
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: svg
-          path: svg/*
-          overwrite: True
+
 
   
