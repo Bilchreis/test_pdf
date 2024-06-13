@@ -6,7 +6,6 @@ permissions:
 on:
   push:
 
-
 jobs:
   export_svg:
     runs-on: ubuntu-latest
